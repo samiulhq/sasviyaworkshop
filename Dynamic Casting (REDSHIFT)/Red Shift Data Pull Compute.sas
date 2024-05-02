@@ -9,11 +9,10 @@ Purpose:              pull data from UDP (snowflake) with dynamic casting
 Inputs:               tablename - REDSHIFT table name (source table for data pull) Required
                       schemaname - REDSHIFT schemaname (Case Sensitive) Optional
                       database - Name of database Optional
-					  casdatalimit-Override default data limit to move data from CAS to SAS Library (optional) 
-								    default is 100MB.	
+					 	
 					  username - Name 	
 
-Outputs:              outlib - Ouput SAS library name
+Outputs:              outlib - Ouput SAS library name (Compute Library default is WORK)
                       outtable - output sas table name
 
 
@@ -26,12 +25,11 @@ Last Updated by:
 
 %macro redshift_data_pull(servername=,
 authdomainname=,
-tablename=,
+tablename=redshiftoutput,
 schemaname=,
 database=,
 outlib=work,
-outtable=,
-casdatalimit=100M);
+outtable=);
 
 
 libname RS_MCR redshift
@@ -140,21 +138,19 @@ cas thissession terminate;
 %let tablename=TEST_SAMIUL;/*table name in UDP*/
 %let schemaname=public;/*schema name case sensitive*/
 %let database=dev; /*database name*/
-%let outlib=casuser; /*output library*/
+/* %let outlib=work; /*output library */
 %let outtable=test2;/*output sas table name*/
-%let casdatalimit=1G; /* default is 100M have to increase for big data pull*/
 %let servername=jaskal-redshift-cluster.cjy1oxmlfiyz.us-east-1.redshift.amazonaws.com;
 %let authdomainname=RedShift;
+ods trace on;
+options MPRINT SYMBOLGEN MPRINTNEST ;
 
 %redshift_data_pull(servername=&servername.,
 authdomainname=&authdomainname.,
 tablename=&tablename.,
 schemaname=&schemaname.,
 database=&database.,
-outlib=&outlib.,
-outtable=&outtable.,
-casdatalimit=&casdatalimit.);
+outtable=&outtable.);
 
-ods trace on;
-options MPRINT SYMBOLGEN MPRINTNEST ;
+
 
