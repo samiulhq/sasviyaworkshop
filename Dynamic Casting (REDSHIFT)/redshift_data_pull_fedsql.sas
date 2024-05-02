@@ -1,18 +1,16 @@
 /**********************************************************************************
 File name:            redshift_data_pull.sas
 
-
-File type:            macro function and test file
-
-Purpose:              pull data from UDP (snowflake) with dynamic casting
+Purpose:              Pull tables from REDSHIFT with dynamic casting
 
 Inputs:               tablename - REDSHIFT table name (source table for data pull) Required
                       schemaname - REDSHIFT schemaname (Case Sensitive) Optional
                       database - Name of database Optional
-					 	
+					  casdatalimit-Override default data limit to move data from CAS to SAS Library (optional) 
+								    default is 100MB.	
 					  username - Name 	
 
-Outputs:              outlib - Ouput SAS library name (Compute Library default is WORK)
+Outputs:              outlib - Ouput SAS library name
                       outtable - output sas table name
 
 
@@ -25,11 +23,12 @@ Last Updated by:
 
 %macro redshift_data_pull(servername=,
 authdomainname=,
-tablename=redshiftoutput,
+tablename=,
 schemaname=,
 database=,
-outlib=work,
-outtable=);
+outlib=,
+outtable=,
+casdatalimit=100M);
 
 
 libname RS_MCR redshift
@@ -82,7 +81,6 @@ proc cas;
 
 
 	myquery=myquery || ' from ' || "&tablename.";
-
 	myquery=' create table casuser.collengths as ( select * from connection to rslib  ( '|| myquery ||' ))';
 	print myquery;
 	 fedSql.execDirect result=r2 / query=myquery;
@@ -115,42 +113,43 @@ proc cas;
 	end;
 	myquery=substr(myquery, 1, length(myquery)-1);
 	myquery=myquery || ' from ' || "&tablename.";
-
+	myquery=' create table casuser.dynamic_cast as ( select * from connection to rslib  ( '|| myquery ||' ))';
 	print myquery;
-	symput('QUERY',myquery);		
+
+		fedSql.execDirect result=r2 / query=myquery;
 run;
+options casdatalimit=&casdatalimit.;
 
-%put &=QUERY;
-
-proc sql;
-connect using RS_MCR;
-create table &outlib..&outtable. as select * from connection to RS_MCR
-(&QUERY.);
-quit;
+data &outlib..&outtable.;
+set casuser.dynamic_cast;
+run;
 
 cas thissession terminate;
 
 %mend redshift_data_pull;
 
 
-
 /*sample usage of the macro*/
-%let tablename=TEST_SAMIUL;/*table name in UDP*/
-%let schemaname=public;/*schema name case sensitive*/
+/*do not use quotation in macro assignment*/
+
+%let tablename=<table name>;/*table name in UDP*/
+%let schemaname=<schema name>;/*schema name case sensitive*/
 %let database=dev; /*database name*/
-/* %let outlib=work; /*output library */
-%let outtable=test2;/*output sas table name*/
-%let servername=jaskal-redshift-cluster.cjy1oxmlfiyz.us-east-1.redshift.amazonaws.com;
-%let authdomainname=RedShift;
-ods trace on;
-options MPRINT SYMBOLGEN MPRINTNEST ;
+%let outlib=work; /*output library*/
+%let outtable=<tablename>;/*output sas table name*/
+%let casdatalimit=1G; /* default is 100M have to increase for big data pull*/
+%let servername=<your server address>;
+%let authdomainname=<authenticaitondomain>;
 
 %redshift_data_pull(servername=&servername.,
 authdomainname=&authdomainname.,
 tablename=&tablename.,
 schemaname=&schemaname.,
 database=&database.,
-outtable=&outtable.);
+outlib=&outlib.,
+outtable=&outtable.,
+casdatalimit=&casdatalimit.);
 
-
+/* ods trace on; */
+/* options MPRINT SYMBOLGEN MPRINTNEST ; */
 
