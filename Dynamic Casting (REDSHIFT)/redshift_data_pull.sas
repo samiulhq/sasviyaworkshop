@@ -203,9 +203,7 @@ ods trace on;
 options MPRINT SYMBOLGEN MPRINTNEST ;
 
 %redshift_data_pull(servername=&servername.,
-/* authdomainname=&authdomainname., */
-username=sahaqu,
-password=Sahaqu123,
+authdomainname=&authdomainname., 
 tablename=&tablename.,
 schemaname=&schemaname.,
 database=&database.,
