@@ -4,13 +4,16 @@ File name:            redshift_data_pull.sas
 
 File type:            macro function and test file
 
-Purpose:              pull data from REDSHIFT with dynamic casting
+Purpose:              pull data from UDP (snowflake) with dynamic casting
 
 Inputs:               tablename - REDSHIFT table name (source table for data pull) Required
                       schemaname - REDSHIFT schemaname (Case Sensitive) Optional
-                      database - Name of database Optional
-					 	
-					  username - Name 	
+                      database - Name of database Optional					 	
+					  username - username
+					  password - Database password
+					  authdomainname - Name of the authetnication domain (if set up)
+					  where - where cluase passed to REDSHIFT
+					  limit - limit number of observation pulled from REDSHIFT
 
 Outputs:              outlib - Ouput SAS library name (Compute Library default is WORK)
                       outtable - output sas table name
@@ -18,19 +21,43 @@ Outputs:              outlib - Ouput SAS library name (Compute Library default i
 
 Last Updated by: 
 
+	03May2024, Samiul Haque, update:
+	- added new macro arguments username, password, where, and limit
 	01May2024, Samiul Haque, Initial Release 
+
+	
 **********************************************************************************/
 
 
 
 %macro redshift_data_pull(servername=,
 authdomainname=,
+username=,
+password=,
 tablename=redshiftoutput,
 schemaname=,
 database=,
 outlib=work,
-outtable=);
+outtable=,
+where=,
+limit=);
 
+
+
+
+cas thissession;
+caslib _ALL_ assign;
+
+
+
+%if %sysfunc(clibexist(thissession,rslib)) %then %do;
+  caslib rslib drop;
+%end;
+
+
+%put %length(&authdomainname.);
+
+%if %length(&authdomainname.) %then %do;
 
 libname RS_MCR redshift
 server="&servername."
@@ -42,8 +69,40 @@ database="&database."
 ;
 
 
-cas thissession;
-caslib _ALL_ assign;
+caslib rslib desc='REDSHIFT Caslib' 
+     dataSource=(srctype="redshift"  
+				 server="&servername."               
+                 schema="&schemaname."
+                 AUTHDOMAIN="&authdomainname"                 
+                 DATABASE="&database.");
+
+%end ;
+
+%else %do;
+
+libname RS_MCR redshift
+server="&servername."
+port=5439
+user="&username."
+password="&password."
+schema="&schemaname." /*case sensitive*/
+ password="&password" 
+database="&database."
+/*         dbcommit = 0 */
+;
+
+
+caslib rslib desc='REDSHIFT Caslib' 
+     dataSource=(srctype="redshift"  
+				 server="&servername."               
+                 schema="&schemaname."
+                 username="&username"
+				 password="&password"                 
+                 DATABASE="&database.");
+%end;
+
+
+
 
 %let max_num_of_columns = 1000;/*Maximum number of columns to expect in a table */
 
@@ -55,17 +114,6 @@ where libname = 'RS_MCR' and
 memname="&tablename." ;
 quit;
 
-
-%if %sysfunc(clibexist(thissession,rslib)) %then %do;
-  caslib rslib drop;
-%end;
-
-caslib rslib desc='REDSHIFT Caslib' 
-     dataSource=(srctype="redshift"  
-				 server="&servername."               
-                 schema="&schemaname."
-                 AUTHDOMAIN="&authdomainname"                 
-                 DATABASE="&database.");
 
 
 proc cas;
@@ -81,7 +129,7 @@ proc cas;
 	myquery=substr(myquery, 1, length(myquery)-1);
 
 
-	myquery=myquery || ' from ' || "&tablename.";
+	myquery=myquery || ' from ' || "&tablename.";	
 
 	myquery=' create table casuser.collengths as ( select * from connection to rslib  ( '|| myquery ||' ))';
 	print myquery;
@@ -115,6 +163,15 @@ proc cas;
 	end;
 	myquery=substr(myquery, 1, length(myquery)-1);
 	myquery=myquery || ' from ' || "&tablename.";
+	
+
+	%if %length(&where.) %then %do;
+		myquery= myquery || " where &where. ";
+	%end;
+
+	%if %length(&limit.) %then %do;
+		myquery= myquery || " limit " ||"&limit.";
+	%end;
 
 	print myquery;
 	symput('QUERY',myquery);		
@@ -146,11 +203,14 @@ ods trace on;
 options MPRINT SYMBOLGEN MPRINTNEST ;
 
 %redshift_data_pull(servername=&servername.,
-authdomainname=&authdomainname.,
+/* authdomainname=&authdomainname., */
+username=sahaqu,
+password=Sahaqu123,
 tablename=&tablename.,
 schemaname=&schemaname.,
 database=&database.,
-outtable=&outtable.);
+outtable=&outtable.,
+where= firstname='Mary');
 
 
 
