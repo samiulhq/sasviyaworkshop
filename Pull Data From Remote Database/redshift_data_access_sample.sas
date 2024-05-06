@@ -12,7 +12,7 @@ libname mylib '/nfsshare/sashls2/data/Redshift';
 
 /*this is implicit sql query SAS translates and send sql command to REDSHIFT*/
 proc sql;
-	create table mylib.test1 as select * from R1.TEST_SAMIUL;
+	create table mylib.test1 as select * from R1.test_table;
 run;
 
 /*this is explicit SQL query (preferred) */
@@ -20,7 +20,7 @@ run;
 proc sql;
 	connect using R1;
 	create table mylib.test2 as select * from connection to R1
-	(select * from TEST_SAMIUL); /*explicit SQL using REDSHIFT's SQL */
+	(select * from test_table); /*explicit SQL using REDSHIFT's SQL */
 	disconnect from R1;
 quit;
 
@@ -32,7 +32,7 @@ proc sql;
 	connect using R1;
 	create table test3 as select * from connection to R1
 	(select cast(firstname as char(10)) as fristname, cast(lastname as char(15)) 
-		as firstname, active from TEST_SAMIUL);
+		as firstname, active from test_table);
 	disconnect from R1;
 quit;
 
@@ -78,7 +78,7 @@ caslib _ALL_ assign;
 proc fedsql sessref=CASAUTO;
 create table casuser.fsql_test as select * from connection to RED
 (select cast(firstname as char(10)) as fristname, cast(lastname as char(15)) 
-		as firstname, active from TEST_SAMIUL);
+		as firstname, active from test_table);
 quit;
 
 /*another way to submit fedsql query through proc cas*/ 
@@ -87,6 +87,6 @@ proc cas;
  fedSql.execDirect query='                                  
   create table casuser.fsql_test_2 as select * from connection to RED                      
   ( select cast(firstname as char(10)) as fristname, cast(lastname as char(15)) 
-		as firstname, active from TEST_SAMIUL)';
+		as firstname, active from test_table)';
 quit;
 
