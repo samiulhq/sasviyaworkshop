@@ -60,3 +60,33 @@ save casdata='test3' casout='test3.sashdat'  incaslib='casuser' outcaslib='casus
 save casdata='test3' casout='test3.parquet'  incaslib='casuser' outcaslib='casuser' replace;/*save as parquet*/
 run;
 
+
+
+/*can I pull data directly to CASLIB? Yes but beaware of memory limit*/ 
+
+caslib RED
+dataSource=(srctype='redshift'
+server='example.redsfhit.com'
+authdomain='RedShift'
+database="dev"
+schema="public");
+
+caslib _ALL_ assign;
+
+/*explicit sql passthrough using proc fedsql*/
+
+proc fedsql sessref=CASAUTO;
+create table casuser.fsql_test as select * from connection to RED
+(select cast(firstname as char(10)) as fristname, cast(lastname as char(15)) 
+		as firstname, active from TEST_SAMIUL);
+quit;
+
+/*another way to submit fedsql query through proc cas*/ 
+
+proc cas;
+ fedSql.execDirect query='                                  
+  create table casuser.fsql_test_2 as select * from connection to RED                      
+  ( select cast(firstname as char(10)) as fristname, cast(lastname as char(15)) 
+		as firstname, active from TEST_SAMIUL)';
+quit;
+
