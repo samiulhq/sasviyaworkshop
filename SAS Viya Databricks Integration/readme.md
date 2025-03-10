@@ -15,6 +15,9 @@ Enable participants to directly apply integration techniques between SAS Viya an
 ## Duration
 Estimated 2-3 hours
 
+## Scenario
+
+<img src="data flow.png">
 
 ### Exercise 1: Basic Connectivity Setup
 **Goal:** Configure SAS Viya to connect to Databricks using sample connectivity codes.
@@ -40,7 +43,10 @@ Estimated 2-3 hours
 1. Use the sample code to load specific datasets into CAS.
 2. Manipulate and analyze the data using SAS Viya’s capabilities.
 
-### Exercise 5: Wrap-Up and Review
+### Exercise 6: Explore SAS Information Catalog
+**Goal:** Participants explore Databricks tables (profiled) through SAS Information catalog
+
+## Wrap-Up and Review
 **Goal:** Ensure participants can apply what they've learned in real-world scenarios.
 
 **Tasks:**
@@ -48,6 +54,6 @@ Estimated 2-3 hours
 2. Open Q&A session to resolve any queries and ensure clarity on all exercises.
 
 ## Conclusion
-Recap of the session and discussion of how these techniques can be applied in various data integration scenarios between SAS Viya and Databricks.
+Recap the session and discuss how these techniques can be applied in various data integration scenarios between SAS Viya and Databricks.
 
 
