@@ -24,3 +24,18 @@ libname CdtSpark spark platform=databricks
   dbmax_text=50 
   properties="Catalog=&MYCATALOG;Other=ConnectRetryWaitTime=20;DefaultColumnSize=1024;"
 ;
+
+cas;
+caslib _ALL_ assign;
+
+/*drop table if exist*/
+
+proc casutil incaslib= CASUER;
+droptable AIR quiet;
+run;
+
+/*copy and promote to cas from databricks*/
+
+data CASUSER.AIR (promote=yes);
+set CdtSpark.AIR;
+run;
