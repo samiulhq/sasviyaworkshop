@@ -10,7 +10,8 @@ Enable participants to directly apply integration techniques between SAS Viya an
 
 ## Materials Needed
 - SAS Viya and Databricks environment ready for use.
-- Access to the sample codes discussed prior to the workshop.
+- Sample Codes.
+- Storage account for bulk load.
 
 ## Duration
 Estimated 2-3 hours
