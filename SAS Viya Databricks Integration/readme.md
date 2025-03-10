@@ -31,7 +31,7 @@ Estimated 2-3 hours
 
 **Tasks:**
 1. Perform data transfer between SAS Viya and Databricks using the sample code.
-2. Explore implicit and explicit SQL passthrough techniques to manage data.
+2. Explore implicit and explicit SQL passthrough techniques.
 
 ### Exercise 3: Bulkload Operations
 **Goal:** Implement the bulkload feature to efficiently manage large data transfers.
