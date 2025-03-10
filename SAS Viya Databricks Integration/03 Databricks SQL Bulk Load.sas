@@ -29,7 +29,7 @@ libname CdtSpark spark platform=databricks
   character_multiplier=1
   dbmax_text=50
  	 
-  BL_APPLICATIONID="a2e7cfdc-93f8-4f12-9eda-81cf09a84566"
+  BL_APPLICATIONID=<azure application id goes here only needed for bulk load >
   bl_accountname="&MYSTRGACC"
   bl_filesystem="&MYFS"
   bl_folder="&MYBLFLDR"
