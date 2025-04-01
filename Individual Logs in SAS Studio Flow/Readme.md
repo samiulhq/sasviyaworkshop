@@ -1,7 +1,7 @@
 # Create Individual Logs for SAS Codes in a Flow
 
 ## Description
-We are introducing a custom step, "Run SAS Code," that enables users to generate individual log files for programs within a flow in SAS Studio. This custom step facilitates better tracking and debugging by segregating logs for each program executed in a sequence.
+We are introducing a custom step, "Run SAS Code," that enables users to generate individual log files for programs within a flow in SAS Studio. This custom step facilitates better tracking and debugging by segregating logs for each program executed in a SAS studio flow.
 
 ## Features
 - **Individual Log Files**: Generate separate log files for each SAS program in your flow.
