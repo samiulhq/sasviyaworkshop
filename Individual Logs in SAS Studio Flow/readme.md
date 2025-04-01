@@ -53,5 +53,5 @@ For support, email us at [samiul.haque@live.com] or raise an issue in this repos
 
 ## FAQ
 Q: Can I use this custom step with any version of SAS Studio?  
-A: This step is compatible with SAS Studio Version X.X and higher.
+A: This step is compatible with SAS Studio Version	Stable 2024.12 (SAS Viya) or higher
 
