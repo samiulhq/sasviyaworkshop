@@ -15,8 +15,10 @@ We introduce a custom step, "Run SAS Code," that enables users to generate indiv
 ## Installation
 1. **Download the Custom Step**: Download the `Run_SAS_Code_Step.stp` file from this repository.
 2. **Upload to SAS Studio**:
-   - Navigate to `Options` > `Upload Custom Step`.
-   - Select the downloaded file and upload it to your SAS Studio environment.
+   - Navigate to SAS Studio on SAS Viya
+   - Right click to a folder where you have write permission
+   - Upload the downloaded step file
+   ![Uploading Step File on SAS Studio](https://github.com/samiulhq/sasviyaworkshop/blob/main/Individual%20Logs%20in%20SAS%20Studio%20Flow/upload%20files.png)  
 
 ## Usage
 To utilize the "Run SAS Code" custom step within your flow, follow these steps:
