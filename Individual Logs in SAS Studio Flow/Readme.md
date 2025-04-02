@@ -41,7 +41,7 @@ Below is an example flow that demonstrates how to use the "Run SAS Code" custom 
 ![Example Flow](https://github.com/samiulhq/sasviyaworkshop/blob/main/Individual%20Logs%20in%20SAS%20Studio%20Flow/logs_flow.png)
 
 ## Contributing
-Contributions to this project are welcome! Please review our contributing guidelines in the `CONTRIBUTING.md` file before submitting any pull requests or issues.
+Contributions to this project are welcome!
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/samiulhq/sasviyaworkshop/blob/main/LICENSE) file for details.
