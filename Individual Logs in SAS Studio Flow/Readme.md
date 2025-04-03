@@ -38,7 +38,7 @@ To utilize the "Run SAS Code" custom step within your flow, follow these steps:
 
 ## Example
 Below is an example flow that demonstrates how to use the "Run SAS Code" custom step within a SAS Studio flow:
-![Example Flow](https://github.com/samiulhq/sasviyaworkshop/blob/main/Individual%20Logs%20in%20SAS%20Studio%20Flow/logs_flow.png)
+![Example Flow](https://github.com/samiulhq/sasviyaworkshop/blob/main/Individual%20Logs%20in%20SAS%20Studio%20Flow/Custom%20Logs%20in%20SAS%20Studio%20Flow.gif)
 
 ## Contributing
 Contributions to this project are welcome!
