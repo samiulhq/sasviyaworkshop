@@ -48,7 +48,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## Authors and Acknowledgment
 - **Samiul Haque** - *Initial work* - [Samiul Haque](https://github.com/samiulhq/)
-
+- **Jim Box** - *Testing, Enhancement, Time Stamp **[Jim Box](https://github.com/JBox-SAS)
 
 ## Support
 For support, email us at [samiul.haque@live.com] or raise an issue in this repository.
