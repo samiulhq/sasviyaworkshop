@@ -4,9 +4,9 @@ This hands-on exercise uses SAS Viya to estimate the **average treatment effect 
 
 
 ### Super Learner
-The SUPERLEARNER procedure is available in the 2024.12 and later releases of SAS Visual Statistics and in the 2025.02 and later releases of SAS Viya Workbench. This procedure allows you to train super learner models for continuous or binary response variables. The procedure also allows you to train a cross-validated selector (discrete super learner), which chooses from the base learner library a single base learner that has the best performance in cross-validation instead of the default ensemble super learner, which creates a convex combination of the base [^1] .
+The SUPERLEARNER procedure is available in the 2024.12 and later releases of SAS Visual Statistics and in the 2025.02 and later releases of SAS Viya Workbench. This procedure allows you to train super learner models for continuous or binary response variables. The procedure also allows you to train a cross-validated selector (discrete super learner), which chooses from the base learner library a single base learner that has the best performance in cross-validation instead of the default ensemble super learner, which creates a convex combination of the base[^1].
 
-[^1] : [Super Learner for Predictive Modeling and Analytics](https://pharmasug.org/proceedings/2025/SA/PharmaSUG-2025-SA-171.pdf)  
+[^1]: [Super Learner for Predictive Modeling and Analytics](https://pharmasug.org/proceedings/2025/SA/PharmaSUG-2025-SA-171.pdf)  
 
 ![image](superlearner.png "Super Learner")
 ---
