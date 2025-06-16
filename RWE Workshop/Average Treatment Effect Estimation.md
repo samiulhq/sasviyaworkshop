@@ -1,4 +1,4 @@
-## 🔍 Causal Effect Estimation for Real-World Evidence
+## 🔍 Causal Effect Estimation for Real World Evidence
 
 This hands-on exercise uses SAS Viya to estimate the **average treatment effect (ATE)** of quitting smoking on ten-year weight change. We’ll leverage [`PROC SUPERLEARNER`](https://go.documentation.sas.com/doc/en/pgmsascdc/v_063/casstat/casstat_superlearner_overview.htm) and [`PROC CAEFFECT`](https://go.documentation.sas.com/doc/hi/pgmsascdc/v_063/casstat/casstat_caeffect_syntax01.htm) on observational data using ensemble learning and doubly robust estimation.
 
