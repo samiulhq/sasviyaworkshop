@@ -114,8 +114,8 @@ run;
 
 In this step, we estimate the **average treatment effect (ATE)** of quitting smoking on weight change by combining:
 
-- The **propensity scores** estimated in Step 1
-- The **predicted potential outcomes** from Step 2
+- The **propensity scores** for smoking cessation estimated in Step 3
+- The **predicted potential outcomes** (10 year weight change) from Step 4
 
 We use `PROC CAEFFECT` to implement a doubly robust estimation framework, which provides valid inference if either the outcome model or the treatment model is correctly specified.
 
