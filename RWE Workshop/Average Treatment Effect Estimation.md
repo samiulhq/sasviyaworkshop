@@ -75,7 +75,7 @@ run;
 
 
 
-### Caluclate Propensity to Quit
+### Calculate Propensity to Quit
 ```sas
 data casuser.swTrtEstData;
   set casuser.swTrtEstData;
