@@ -121,7 +121,7 @@ We use `PROC CAEFFECT` to implement a doubly robust estimation framework, which 
 
 ```sas
 
-proc caeffect data=c.swDREstData inference method=TMLE;
+proc caeffect data=casuser.swDREstData inference method=TMLE;
    treatvar Quit;
    outcomevar Change;
    pom treatLev=1 treatProb=P_Quit1 predout=quitsmoking;
