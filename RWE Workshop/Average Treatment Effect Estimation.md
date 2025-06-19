@@ -26,6 +26,21 @@ To run the causal effect estimation workflow described in this workshop, you mus
 - Treatment: `Quit` (1 = quit smoking, 0 = continued)
 - Covariates: `Age`, `Sex`, `Race`, `Education`, `Exercise`, `Activity`, `YearsSmoke`, `PerDay`
 
+| Variable     | Description                                                                 |
+|--------------|-----------------------------------------------------------------------------|
+| Activity     | Level of daily activity (0, 1, or 2)                                        |
+| Age          | Age in 1971                                                                 |
+| BaseWeight   | Weight in kilograms in 1971                                                 |
+| Education    | Level of education (0, 1, 2, 3, or 4)                                       |
+| Exercise     | Amount of regular recreational exercise (0, 1, or 2)                        |
+| PerDay       | Number of cigarettes smoked per day in 1971                                 |
+| Quit         | 1 if the individual quit smoking between interviews; 0 otherwise            |
+| Race         | 0 for white; 1 otherwise                                                    |
+| Sex          | 0 for male; 1 for female                                                    |
+| Weight       | Weight in kilograms at the follow-up interview                              |
+| YearsSmoke   | Number of years the individual has smoked                                   |
+| Change       | Difference in weight between follow-up and baseline (in kilograms)          |
+
  For this example, it is assumed that the variables Activity, Age, BaseWeight, Education, Exercise, PerDay, Race, Sex, and YearsSmoke make up a valid adjustment set that you can use to obtain unbiased estimates of the potential outcome means.
 
 
