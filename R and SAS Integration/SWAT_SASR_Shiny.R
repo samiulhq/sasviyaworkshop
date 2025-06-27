@@ -26,7 +26,7 @@ if(class(er)=='try-error'){
 
 
 Sys.setenv(CAS_CLIENT_SSL_CA_LIST='/opt/certificates/my_CAS_Viya4POC_cert.pem')   
-cassess<-CAS("sas-cas-server-default-bin-sashls1.eastus.cloudapp.azure.com",5570,username="sahaqu",password="sahaqu")
+cassess<-CAS("sas-cas-server-default-bin-sashls1.eastus.cloudapp.azure.com",5570,username="",password="")
 list_caslibs<-cas.table.caslibInfo(cassess)
 dataflag=1
 scatterflag=0;
