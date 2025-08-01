@@ -20,7 +20,7 @@ It supports open file formats like Parquet, Delta Lake, Avro, JSON, and Apache I
 
 For many use cases—such as cohort building, which often involves complex temporal logic — SAS developers can use SAS/ACCESS to DuckDB to process large analytical workloads directly on cost-effective storage, bypassing the need for traditional data warehouse or lakehouse compute.
 
-Importantly, SAS/ACCESS to DuckDB operates independently of CAS, helping reduce overall SAS Viya cloud costs while still delivering high-performance analytics.
+Importantly, SAS/ACCESS to DuckDB operates independently of CAS, helping reduce overall  cloud costs while still delivering high-performance analytics.
 
 ## Performance
 
