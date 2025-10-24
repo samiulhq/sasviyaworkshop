@@ -3,7 +3,7 @@
 %let MYPWD=<databricks personal access token>;
 %let MYHTTPPATH=<http path>;
 
-%let MYDRIVERCLASS="cdata.jdbc.databricks.DatabricksDriver";
+%let MYDRIVERCLASS="cdata.jdbc.databricks.DatabricksDriver" /*("com.simba.databricks.jdbc.Driver" for newer version of Viya)*/;
 %let MYCATALOG=hive_metastore;
 %let MYSCHEMA=default;
 %let MYUID=token;
