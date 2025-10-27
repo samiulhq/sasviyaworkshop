@@ -1,8 +1,8 @@
 # SAS ↔ Snowflake Connectivity Workshop
 
-This workshop demonstrates how to connect SAS to Snowflake using:
-- **LIBNAME engine for Snowflake**
-- **Implicit SQL vs DATA Step**
+This workshop demonstrates how to connect SAS to Snowflake and covers the following key concepts:
+- **SAS/Access engine for Snowflake**
+- **Implicit SQL**
 - **Bulk Load into Snowflake**
 - **Explicit SQL Passthrough**
 - **CAS (Cloud Analytics Services) Integration with Snowflake**
