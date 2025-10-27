@@ -167,4 +167,3 @@ cas mySession terminate;
 
 ## 
 
-## 6. Explicit SQL Passthrough
